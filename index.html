@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CoordinatorsApp — opis systemu do organizacji wyjazdów.">
+    <title>
+      CoordinatorsApp — projekt backendowy
+    </title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <section class="compact-intro" id="compact-overview">
+        <div class="wrap">
+          <p class="compact-note">
+            Strona ta pokazuje przykładowe widoki, definicje endpointów oraz krótkie omówienie systemu, bez danych osób uczestniczących, konfiguracji środowisk czy dostępu do API. Decyzje implementacyjne i architekturę chętnie pokażę podczas rozmowy.
+          </p>
+          <h2>
+            System do organizacji wyjazdów w NGO
+          </h2>
+          <p>
+            CoordinatorsApp powstał na potrzeby realizowania działań statutowych Stowarzyszenia Tęczowa Drużyna, które organizuje wyjazdy górskie i inne wyjazdy dla swoich członków oraz uczestników. Stowarzyszenie posiada również status organizacji turystycznej.
+          </p>
+          <p>
+            System został przeze mnie zaprojektowany, zaimplementowany, wdrożony i jest przeze mnie administrowany. Odpowiadam również za jego dalszy rozwój, utrzymanie, bezpieczeństwo i dopasowanie do potrzeb organizacji.
+          </p>
+          <div class="stats">
+            <div class="stat">
+              <strong>
+                2 115
+              </strong>
+              <span>
+                rezerwacji
+              </span>
+            </div>
+            <div class="stat">
+              <strong>
+                2 500
+              </strong>
+              <span>
+                osób na rezerwacjach
+              </span>
+            </div>
+            <div class="stat">
+              <strong>
+                86
+              </strong>
+              <span>
+                wycieczek
+              </span>
+            </div>
+            <div class="stat">
+              <strong>
+                102
+              </strong>
+              <span>
+                warianty wyjazdów
+              </span>
+            </div>
+          </div>
+          <p>
+            <small>
+              Dane od czerwca 2025 roku.
+            </small>
+          </p>
+          <div class="compact-grid">
+            <article class="compact-card">
+              <h3>
+                Bezpieczeństwo i kontrola dostępu
+              </h3>
+              <p>
+                Walidacja danych, ochrona informacji i ograniczenie dostępu do funkcji zależnie od roli użytkownika.
+              </p>
+            </article>
+            <article class="compact-card">
+              <h3>
+                Spójność procesów
+              </h3>
+              <p>
+                Jedno źródło danych dla zapisów, rezerwacji, finansów, rozliczeń i raportowania.
+              </p>
+            </article>
+            <article class="compact-card">
+              <h3>
+                Technologie
+              </h3>
+              <p>
+                C#, ASP.NET Core .NET 8, Entity Framework Core, MySQL 8, React, Docker, Google Cloud Run i xUnit.
+              </p>
+            </article>
+          </div>
+          <p class="compact-link">
+            <a class="button" href="api.html">
+              Zobacz definicje API
+            </a>
+          </p>
+        </div>
+      </section>
+      <section class="gallery-section" id="widoki">
+        <div class="wrap">
+          <h2>
+            System w codziennej pracy
+          </h2>
+          <p class="section-intro">
+            Wybrane widoki pokazują, jak aplikacja łączy obsługę wyjazdów, rezerwacji, finansów, raportowania i pracy organizacyjnej.
+          </p>
+          <div class="gallery-group">
+            <h3>
+              Publiczny proces zapisów
+            </h3>
+            <p>
+              Publiczna ścieżka prezentująca ofertę wyjazdu i proces rezerwacji.
+            </p>
+            <p class="compact-link">
+              <a class="button" href="https://wycieczki.teczowadruzyna.org" target="_blank" rel="noopener">
+                Otwórz publiczną część zapisów
+              </a>
+            </p>
+            <div class="gallery-grid">
+              <figure class="gallery-card">
+                <a href="media/23-publiczna-lista-wycieczek.png" target="_blank" rel="noopener">
+                  <img src="media/23-publiczna-lista-wycieczek.png" alt="Lista dostępnych wycieczek">
+                </a>
+                <figcaption>
+                  Lista dostępnych wycieczek
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/24-publiczne-szczegoly-wycieczki.png" target="_blank" rel="noopener">
+                  <img src="media/24-publiczne-szczegoly-wycieczki.png" alt="Szczegóły wycieczki i wariantu">
+                </a>
+                <figcaption>
+                  Szczegóły wycieczki i wariantu
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/25-formularz-rezerwacji.png" target="_blank" rel="noopener">
+                  <img src="media/25-formularz-rezerwacji.png" alt="Formularz rezerwacji">
+                </a>
+                <figcaption>
+                  Formularz rezerwacji
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="gallery-group">
+            <h3>
+              Panel główny i widoki specjalne
+            </h3>
+            <p>
+              Dostęp do listy wycieczek oraz poszczególnych widoków jest ustalany na podstawie roli użytkownika w systemie.
+            </p>
+            <div class="gallery-grid">
+              <figure class="gallery-card">
+                <a href="media/04-panel-lista-wycieczek.png" target="_blank" rel="noopener">
+                  <img src="media/04-panel-lista-wycieczek.png" alt="Lista wycieczek">
+                </a>
+                <figcaption>
+                  Lista wycieczek
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/05-widoki-specjalne.png" target="_blank" rel="noopener">
+                  <img src="media/05-widoki-specjalne.png" alt="Widoki specjalne">
+                </a>
+                <figcaption>
+                  Widoki specjalne
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="gallery-group">
+            <h3>
+              Tworzenie wycieczki
+            </h3>
+            <p>
+              Panel, w którym osoby koordynatorskie ustawiają parametry wyjazdu, warianty, osoby koordynatorskie i elementy wyjazdu.
+            </p>
+            <div class="gallery-grid">
+              <figure class="gallery-card">
+                <a href="media/06-tworzenie-wycieczki.png" target="_blank" rel="noopener">
+                  <img src="media/06-tworzenie-wycieczki.png" alt="Tworzenie wycieczki">
+                </a>
+                <figcaption>
+                  Tworzenie wycieczki
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/07-edycja-wariantu.png" target="_blank" rel="noopener">
+                  <img src="media/07-edycja-wariantu.png" alt="Edycja wariantu">
+                </a>
+                <figcaption>
+                  Edycja wariantu
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/08-program-wycieczki.png" target="_blank" rel="noopener">
+                  <img src="media/08-program-wycieczki.png" alt="Program wycieczki">
+                </a>
+                <figcaption>
+                  Program wycieczki
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="gallery-group">
+            <h3>
+              Szczegóły wyjazdu
+            </h3>
+            <p>
+              Sekcja zarządzania szczegółami wyjazdu, dostępami i osobami, w tym kanałami Discord, obecnością, dostępem mentorskim, zapisami priorytetowymi i podsumowaniami logistycznymi.
+            </p>
+            <div class="gallery-grid">
+              <figure class="gallery-card">
+                <a href="media/ogolny-widok-wyjazdu.png" target="_blank" rel="noopener">
+                  <img src="media/ogolny-widok-wyjazdu.png" alt="Ogólny widok wyjazdu">
+                </a>
+                <figcaption>
+                  Ogólny widok wyjazdu
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/wycieczka-discord.png" target="_blank" rel="noopener">
+                  <img src="media/wycieczka-discord.png" alt="Wycieczka i Discord">
+                </a>
+                <figcaption>
+                  Wycieczka i Discord
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/zestawienia.png" target="_blank" rel="noopener">
+                  <img src="media/zestawienia.png" alt="Zestawienia wyjazdu">
+                </a>
+                <figcaption>
+                  Zestawienia wyjazdu
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="gallery-group">
+            <h3>
+              Rezerwacje i uczestnicy
+            </h3>
+            <p>
+              Miejsce zarządzania rezerwacjami, uczestnikami, listami, komunikacją i saldami płatności.
+            </p>
+            <div class="gallery-grid">
+              <figure class="gallery-card">
+                <a href="media/09-rezerwacje-w-wariancie.png" target="_blank" rel="noopener">
+                  <img src="media/09-rezerwacje-w-wariancie.png" alt="Rezerwacje na wariancie">
+                </a>
+                <figcaption>
+                  Rezerwacje na wariancie
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/10-szczegoly-rezerwacji.png" target="_blank" rel="noopener">
+                  <img src="media/10-szczegoly-rezerwacji.png" alt="Szczegóły rezerwacji">
+                </a>
+                <figcaption>
+                  Szczegóły rezerwacji
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/11-osoba-na-rezerwacji.png" target="_blank" rel="noopener">
+                  <img src="media/11-osoba-na-rezerwacji.png" alt="Osoba na rezerwacji">
+                </a>
+                <figcaption>
+                  Osoba na rezerwacji
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="gallery-group">
+            <h3>
+              Rejestr faktur
+            </h3>
+            <p>
+              Powiązywanie przelewów z fakturami oraz kontrola kompletności dokumentów przy zamknięciu miesiąca.
+            </p>
+            <div class="gallery-grid">
+              <figure class="gallery-card">
+                <a href="media/12-rejestr-faktur-lista.png" target="_blank" rel="noopener">
+                  <img src="media/12-rejestr-faktur-lista.png" alt="Rejestr faktur — lista">
+                </a>
+                <figcaption>
+                  Rejestr faktur — lista
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/13-rejestr-faktur-szczegoly.png" target="_blank" rel="noopener">
+                  <img src="media/13-rejestr-faktur-szczegoly.png" alt="Rejestr faktur — szczegóły">
+                </a>
+                <figcaption>
+                  Rejestr faktur — szczegóły
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/14-rejestr-faktur-powiazania.png" target="_blank" rel="noopener">
+                  <img src="media/14-rejestr-faktur-powiazania.png" alt="Rejestr faktur — powiązania">
+                </a>
+                <figcaption>
+                  Rejestr faktur — powiązania
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="gallery-group">
+            <h3>
+              Rozliczenia wycieczek
+            </h3>
+            <p>
+              Widok zespołu finansowego do kontroli wpłat, obecności, szkicu rozliczenia i proponowanych zwrotów.
+            </p>
+            <div class="gallery-grid">
+              <figure class="gallery-card">
+                <a href="media/15-rozliczenia-wycieczek.png" target="_blank" rel="noopener">
+                  <img src="media/15-rozliczenia-wycieczek.png" alt="Rozliczenia wycieczek">
+                </a>
+                <figcaption>
+                  Rozliczenia wycieczek
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/16-bilans-wycieczki.png" target="_blank" rel="noopener">
+                  <img src="media/16-bilans-wycieczki.png" alt="Ustawienia rozliczenia">
+                </a>
+                <figcaption>
+                  Ustawienia rozliczenia
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/17-eksport-rozliczenia.png" target="_blank" rel="noopener">
+                  <img src="media/17-eksport-rozliczenia.png" alt="Proponowane zwroty">
+                </a>
+                <figcaption>
+                  Proponowane zwroty
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="gallery-group">
+            <h3>
+              UFG i TFG
+            </h3>
+            <p>
+              Podgląd danych raportowanych do UFG oraz raportów zawartych umów i ich aktualizacji przekazywanych do TFG.
+            </p>
+            <div class="gallery-grid">
+              <figure class="gallery-card">
+                <a href="media/18-ufg-zestawienie.png" target="_blank" rel="noopener">
+                  <img src="media/18-ufg-zestawienie.png" alt="Rejestr UFG — zestawienie">
+                </a>
+                <figcaption>
+                  Rejestr UFG — zestawienie
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/20-tfg-eksporty.png" target="_blank" rel="noopener">
+                  <img src="media/20-tfg-eksporty.png" alt="Eksporty TFG">
+                </a>
+                <figcaption>
+                  Eksporty TFG
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="gallery-group">
+            <h3>
+              Członkostwo i zasoby
+            </h3>
+            <p>
+              Kontrola składek, statusu członkostwa, ról Discord oraz ewidencji zasobów i ich przekazywania.
+            </p>
+            <div class="gallery-grid">
+              <figure class="gallery-card">
+                <a href="media/21-osoby-czlonkowskie.png" target="_blank" rel="noopener">
+                  <img src="media/21-osoby-czlonkowskie.png" alt="Osoby członkowskie">
+                </a>
+                <figcaption>
+                  Osoby członkowskie
+                </figcaption>
+              </figure>
+              <figure class="gallery-card">
+                <a href="media/22-zasoby.png" target="_blank" rel="noopener">
+                  <img src="media/22-zasoby.png" alt="Zasoby i przekazania">
+                </a>
+                <figcaption>
+                  Zasoby i przekazania
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

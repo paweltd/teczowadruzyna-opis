@@ -1,0 +1,2085 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Definicje endpointów API systemu CoordinatorsApp.">
+    <title>
+      Definicje endpointów — CoordinatorsApp
+    </title>
+    <link rel="stylesheet" href="api.css">
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <a href="index.html">
+          Powrót do opisu
+        </a>
+        <h1>
+          Definicje endpointów
+        </h1>
+        <p>
+          Statyczny wykaz endpointów z kontrolerów projektu. Przedstawia zakres funkcji backendu, bez uruchamiania serwera i wysyłania żądań.
+        </p>
+        <div class="stats">
+          <span>
+            33 kontrolery w projekcie
+          </span>
+          <span>
+            162 endpointy w projekcie
+          </span>
+        </div>
+      </div>
+    </header>
+    <main class="wrap">
+      <div id="catalog">
+        <section>
+          <h2>
+            AuthController
+          </h2>
+          <p class="controller-description">
+            Logowanie przez Google, sprawdzenie sesji i wylogowanie.
+          </p>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Auth/google-login
+            </span>
+            <div class="action">
+              Rozpoczyna logowanie użytkownika za pomocą konta Google.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Auth/check-status
+            </span>
+            <div class="action">
+              Sprawdza, czy użytkownik ma aktywną sesję.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Auth/logout
+            </span>
+            <div class="action">
+              Wylogowuje użytkownika.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            CronController
+          </h2>
+          <p class="controller-description">
+            Operacje uruchamiane przez harmonogram, m.in. korekty TFG i synchronizacja przelewów.
+          </p>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Cron/tfg/detect-pending-corrections
+            </span>
+            <div class="action">
+              Wykrywa oczekujące korekty danych TFG.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Cron/bankTransfers/synchronize
+            </span>
+            <div class="action">
+              Synchronizuje przelewy bankowe na podstawie informacji wysyłanych mailowo przez bank w ramach cyklicznego zadania w Cloud Run.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            DiagnosticsController
+          </h2>
+          <p class="controller-description">
+            Podgląd dzienników żądań i błędów.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /diagnostics/request-audit-logs
+            </span>
+            <div class="action">
+              Pobiera dziennik audytu żądań kierowanych do systemu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /diagnostics/error-logs
+            </span>
+            <div class="action">
+              Pobiera zapisane błędy aplikacji.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            DiscordAccessController
+          </h2>
+          <p class="controller-description">
+            Nadawanie i odbieranie dostępu do kanałów Discord.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /discord/access/{channelId}
+            </span>
+            <div class="action">
+              Pobiera listę osób mających dostęp do kanału Discord.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /discord/access/{channelId}/autolink
+            </span>
+            <div class="action">
+              Automatycznie nadaje dostęp do kanału na podstawie powiązania z wyjazdem.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /discord/access/{channelId}/grant-multiple
+            </span>
+            <div class="action">
+              Nadaje dostęp do kanału wybranej grupie osób.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /discord/access/{channelId}/revoke-inactive
+            </span>
+            <div class="action">
+              Odbiera dostęp osobom, które nie powinny już korzystać z kanału.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /discord/access/{channelId}/user/{discordUserId}
+            </span>
+            <div class="action">
+              Usuwa użytkownika Discord z kanału.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            DiscordBotController
+          </h2>
+          <p class="controller-description">
+            Obsługa weryfikacji i komunikacji przez bota Discord.
+          </p>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /DiscordBot/verify
+            </span>
+            <div class="action">
+              Umożliwia automatyczne dodanie do kanału Discord osoby zapisanej na wyjazd po użyciu przycisku na Discordzie.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /DiscordBot/send-media-consents
+            </span>
+            <div class="action">
+              Wysyła wiadomości dotyczące zgód wizerunkowych.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            DiscordChannelsController
+          </h2>
+          <p class="controller-description">
+            Kanały Discord przypisane do wyjazdów.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /discord/{tripGuid}/channels
+            </span>
+            <div class="action">
+              Pobiera kanały Discord powiązane z wyjazdem.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /discord/{tripGuid}/channels
+            </span>
+            <div class="action">
+              Tworzy kanał Discord powiązany z wyjazdem.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /discord/{tripGuid}/channels/{channelId}/message
+            </span>
+            <div class="action">
+              Wysyła wiadomość na wskazany kanał.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            DiscordUsersController
+          </h2>
+          <p class="controller-description">
+            Lista i odświeżanie danych użytkowników Discord.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /discord/users
+            </span>
+            <div class="action">
+              Pobiera listę użytkowników Discord.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /discord/users/refresh
+            </span>
+            <div class="action">
+              Odświeża dane użytkowników Discord.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            ElementsController
+          </h2>
+          <p class="controller-description">
+            Elementy programu wyjazdu i ich powiązania z wariantami.
+          </p>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Elements
+            </span>
+            <div class="action">
+              Dodaje element wyjazdu do wskazanego wariantu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Elements/{elementGuid}/{variantGuid}
+            </span>
+            <div class="action">
+              Przypisuje istniejący element do wskazanego wariantu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /Elements/{elementGuid}/{variantGuid}
+            </span>
+            <div class="action">
+              Usuwa powiązanie elementu z wariantem.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Elements/{elementGuid}
+            </span>
+            <div class="action">
+              Aktualizuje dane elementu wyjazdu.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            ParticipantsController
+          </h2>
+          <p class="controller-description">
+            Dane uczestników, płatności, ubezpieczenia, obecność i korekty.
+          </p>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Participants/{participantGuid}/general
+            </span>
+            <div class="action">
+              Zmienia podstawowe dane uczestnika.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Participants/{participantGuid}/payments
+            </span>
+            <div class="action">
+              Aktualizuje informacje o płatnościach uczestnika.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Participants/{participantGuid}/insurance
+            </span>
+            <div class="action">
+              Aktualizuje dane ubezpieczenia uczestnika.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Participants/{participantGuid}/cancel
+            </span>
+            <div class="action">
+              Anuluje udział wskazanej osoby.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Participants/{participantGuid}/corrections
+            </span>
+            <div class="action">
+              Dodaje korekty rozliczeniowe uczestnika.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Participants/{participantGuid}/corrections/delete
+            </span>
+            <div class="action">
+              Usuwa wskazane korekty uczestnika.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Participants/attendance
+            </span>
+            <div class="action">
+              Zapisuje obecność uczestników wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Participants/bulk-corrections
+            </span>
+            <div class="action">
+              Dodaje korekty zbiorczo dla uczestników wariantu.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            PublicTripsController
+          </h2>
+          <p class="controller-description">
+            Publiczne szczegóły wyjazdów, wariantów i dostępności zapisów.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /PublicTrips
+            </span>
+            <div class="action">
+              Zwraca listę wyjazdów dostępnych publicznie.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /PublicTrips/{tripGuid}
+            </span>
+            <div class="action">
+              Pobiera publiczne szczegóły wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /PublicTrips/{tripGuid}/{variantGuid}
+            </span>
+            <div class="action">
+              Pobiera szczegóły wariantu wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /PublicTrips/{variantGuid}/checkStatus
+            </span>
+            <div class="action">
+              Sprawdza, czy zapisy na wariant są aktywne.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /PublicTrips/resolve/{priorityKey}
+            </span>
+            <div class="action">
+              Wyszukuje wyjazd powiązany z kluczem zapisów priorytetowych.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            RegistrationsController
+          </h2>
+          <p class="controller-description">
+            Obsługa istniejących rezerwacji przez osoby uprawnione.
+          </p>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Registrations/{registrationGuid}/cancel
+            </span>
+            <div class="action">
+              Anuluje istniejącą rezerwację.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Registrations/{registrationGuid}/moveToActive
+            </span>
+            <div class="action">
+              Przenosi rezerwację na listę aktywnych.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Registrations/{registrationGuid}/confirm
+            </span>
+            <div class="action">
+              Potwierdza rezerwację.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Registrations/{registrationGuid}/email-history
+            </span>
+            <div class="action">
+              Pobiera historię wiadomości wysłanych dla rezerwacji.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Registrations/{registrationGuid}/edit-reminders
+            </span>
+            <div class="action">
+              Zmienia daty przypomnień rezerwacji.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Registrations/{registrationGuid}/edit-additional
+            </span>
+            <div class="action">
+              Zmienia dodatkowe informacje o rezerwacji.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Registrations/{registrationGuid}/change-primary-participant
+            </span>
+            <div class="action">
+              Zmienia osobę główną przypisaną do rezerwacji.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Registrations/{registrationGuid}/view
+            </span>
+            <div class="action">
+              Rejestruje w audycie wyświetlenie rezerwacji.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            ReservationReminderController
+          </h2>
+          <p class="controller-description">
+            Uruchamianie przypomnień dotyczących rezerwacji.
+          </p>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /reminders/send
+            </span>
+            <div class="action">
+              Wysyła wiadomości e-mail z przypomnieniem o wpłacie zaliczki.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            ReservationsController
+          </h2>
+          <p class="controller-description">
+            Publiczny proces utworzenia i zakończenia rezerwacji.
+          </p>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Reservations/{variantGuid}
+            </span>
+            <div class="action">
+              Umożliwia utworzenie prerezerwacji dla wybranego wariantu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Reservations/{reservationGuid}/finish
+            </span>
+            <div class="action">
+              Kończy prerezerwację po uzupełnieniu danych uczestników i wymaganych oświadczeń.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Reservations/{reservationGuid}/resume
+            </span>
+            <div class="action">
+              Pobiera dane potrzebne do wznowienia rezerwacji.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            SystemEmailsController
+          </h2>
+          <p class="controller-description">
+            Wysyłka wybranych wiadomości systemowych.
+          </p>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /SystemEmails/check-nnw-insurance
+            </span>
+            <div class="action">
+              Wysyła powiadomienia o ubezpieczeniu NNW.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /SystemEmails/send-bulk
+            </span>
+            <div class="action">
+              Wysyła zbiorczą korespondencję systemową.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            TripAccessController
+          </h2>
+          <p class="controller-description">
+            Uprawnienia użytkowników i mentorów do wyjazdu.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /trips/{tripGuid}/access/users
+            </span>
+            <div class="action">
+              Pobiera użytkowników z dostępem do wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /trips/{tripGuid}/access/mentors
+            </span>
+            <div class="action">
+              Pobiera mentorów z dostępem do wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /trips/{tripGuid}/access/users/{userGuid}
+            </span>
+            <div class="action">
+              Nadaje użytkownikowi dostęp do wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /trips/{tripGuid}/access/users/{userGuid}
+            </span>
+            <div class="action">
+              Odbiera użytkownikowi dostęp do wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /trips/{tripGuid}/access/mentors/{userGuid}
+            </span>
+            <div class="action">
+              Nadaje mentorowi dostęp do wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /trips/{tripGuid}/access/mentors/{userGuid}
+            </span>
+            <div class="action">
+              Odbiera mentorowi dostęp do wyjazdu.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            TripsController
+          </h2>
+          <p class="controller-description">
+            Tworzenie, edycja i statusy wyjazdów.
+          </p>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Trips/{tripName}
+            </span>
+            <div class="action">
+              Tworzy nowy wyjazd.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Trips
+            </span>
+            <div class="action">
+              Pobiera skrócone informacje o wyjazdach użytkownika.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Trips/{guid}
+            </span>
+            <div class="action">
+              Pobiera dane wskazanego wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Trips/{guid}/full
+            </span>
+            <div class="action">
+              Pobiera pełne dane wskazanego wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Trips
+            </span>
+            <div class="action">
+              Aktualizuje wyjazd.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Trips/{tripGuid}/priority
+            </span>
+            <div class="action">
+              Pobiera link lub klucz do zapisów priorytetowych.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Trips/{tripGuid}/priority/refresh
+            </span>
+            <div class="action">
+              Generuje nowy klucz zapisów priorytetowych.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PATCH">
+              PATCH
+            </span>
+            <span class="route">
+              /Trips/{tripGuid}/status
+            </span>
+            <div class="action">
+              Zmienia status wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PATCH">
+              PATCH
+            </span>
+            <span class="route">
+              /Trips/{tripGuid}/settlement-status
+            </span>
+            <div class="action">
+              Zmienia status rozliczenia wyjazdu.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            UsersController
+          </h2>
+          <p class="controller-description">
+            Konta użytkowników oraz przypisane im role.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /users
+            </span>
+            <div class="action">
+              Pobiera listę użytkowników.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /users
+            </span>
+            <div class="action">
+              Tworzy konto użytkownika.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /users/{userGuid}
+            </span>
+            <div class="action">
+              Usuwa konto użytkownika.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /users/{userGuid}/reactivate
+            </span>
+            <div class="action">
+              Ponownie aktywuje konto użytkownika.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /users/{userGuid}/roles
+            </span>
+            <div class="action">
+              Dodaje rolę użytkownikowi.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /users/{userGuid}/roles/{role}
+            </span>
+            <div class="action">
+              Usuwa rolę użytkownika.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /users/{userGuid}/roles/update
+            </span>
+            <div class="action">
+              Zastępuje zestaw ról użytkownika.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            VariantsController
+          </h2>
+          <p class="controller-description">
+            Warianty wyjazdów, ich edycja i zdjęcia.
+          </p>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Variants
+            </span>
+            <div class="action">
+              Dodaje wariant do wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Variants
+            </span>
+            <div class="action">
+              Aktualizuje wariant wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Variants/{tripId}/images
+            </span>
+            <div class="action">
+              Przesyła zdjęcie wariantu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /Variants/{variantGuid}
+            </span>
+            <div class="action">
+              Usuwa wariant wyjazdu.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            AuditLogsController
+          </h2>
+          <p class="controller-description">
+            Dziennik zdarzeń systemowych.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /AuditLogs
+            </span>
+            <div class="action">
+              Pobiera wpisy dziennika audytu.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            BankTransfersController
+          </h2>
+          <p class="controller-description">
+            Przelewy, kategorie, wyciągi bankowe i przepływy finansowe.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /BankTransfers
+            </span>
+            <div class="action">
+              Pobiera przelewy z filtrowaniem i paginacją.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /BankTransfers/categories
+            </span>
+            <div class="action">
+              Pobiera dostępne kategorie przelewów.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PATCH">
+              PATCH
+            </span>
+            <span class="route">
+              /BankTransfers/{guid}/category
+            </span>
+            <div class="action">
+              Zmienia kategorię przelewu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /BankTransfers/verification/month
+            </span>
+            <div class="action">
+              Pobiera wynik weryfikacji wyciągu za wskazany miesiąc.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PATCH">
+              PATCH
+            </span>
+            <span class="route">
+              /BankTransfers/{guid}/related-trip
+            </span>
+            <div class="action">
+              Przypisuje przelew do wyjazdu lub usuwa przypisanie.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /BankTransfers/verification/month/import
+            </span>
+            <div class="action">
+              Importuje wyciąg bankowy za wskazany miesiąc.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /BankTransfers/flows
+            </span>
+            <div class="action">
+              Pobiera roczne zestawienie przepływów.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /BankTransfers/verification/month/export-operations
+            </span>
+            <div class="action">
+              Eksportuje listę operacji bankowych do XLSX.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /BankTransfers/related-trip-options
+            </span>
+            <div class="action">
+              Pobiera wyjazdy możliwe do powiązania z kosztem.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /BankTransfers/synchronize
+            </span>
+            <div class="action">
+              Uruchamia ręczną synchronizację przelewów.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PATCH">
+              PATCH
+            </span>
+            <span class="route">
+              /BankTransfers/{guid}/membership-member
+            </span>
+            <div class="action">
+              Przypisuje przelew do osoby członkowskiej lub usuwa przypisanie.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            FinanceController
+          </h2>
+          <p class="controller-description">
+            Rozliczenia wyjazdów, szkice, bilans i eksport arkusza.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Finance/trips
+            </span>
+            <div class="action">
+              Pobiera wyjazdy widoczne w przeglądzie finansowym.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/reservations
+            </span>
+            <div class="action">
+              Pobiera rezerwacje i dane finansowe wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-status
+            </span>
+            <div class="action">
+              Zmienia status rozliczenia wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft
+            </span>
+            <div class="action">
+              Pobiera lub tworzy szkic rozliczenia.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/participant-settings
+            </span>
+            <div class="action">
+              Pobiera ustawienia uczestników w szkicu rozliczenia.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/participant-settings/{participantGuid}
+            </span>
+            <div class="action">
+              Zmienia ustawienia wskazanego uczestnika w szkicu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/full-refund
+            </span>
+            <div class="action">
+              Ustawia pełny zwrot dla rezerwacji w szkicu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/participant-adjustments
+            </span>
+            <div class="action">
+              Dodaje korektę dla uczestnika w szkicu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/participant-adjustments/{adjustmentId}
+            </span>
+            <div class="action">
+              Usuwa korektę uczestnika ze szkicu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/variant-expenses
+            </span>
+            <div class="action">
+              Dodaje koszt wariantu do szkicu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/variant-expenses/{expenseId}
+            </span>
+            <div class="action">
+              Usuwa koszt wariantu ze szkicu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/variant-expenses/{expenseId}
+            </span>
+            <div class="action">
+              Aktualizuje koszt wariantu w szkicu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/participant-full-refund
+            </span>
+            <div class="action">
+              Ustawia pełny zwrot dla uczestnika w szkicu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/participant-full-refund/{participantRefundId}
+            </span>
+            <div class="action">
+              Usuwa pełny zwrot uczestnika ze szkicu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/proposed-returns
+            </span>
+            <div class="action">
+              Oblicza proponowane kwoty zwrotów.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/verify-bank-statement
+            </span>
+            <div class="action">
+              Importuje plik CSV do weryfikacji wyciągu wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-drafts/public
+            </span>
+            <div class="action">
+              Pobiera publicznie dostępne szkice rozliczenia wyjazdu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/by-user/{userId}
+            </span>
+            <div class="action">
+              Pobiera szkic rozliczenia utworzony przez wskazanego użytkownika.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-draft/visibility
+            </span>
+            <div class="action">
+              Zmienia widoczność szkicu rozliczenia.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Finance/trips/{tripGuid}/settlement-workbook-preview
+            </span>
+            <div class="action">
+              Generuje plik XLSX z rozliczeniem wyjazdu.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            GearController
+          </h2>
+          <p class="controller-description">
+            Ewidencja sprzętu i przekazania materiałów.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Gear/all
+            </span>
+            <div class="action">
+              Pobiera listę sprzętu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Gear/update-consumables
+            </span>
+            <div class="action">
+              Zmienia stany materiałów zużywalnych.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Gear/transfer
+            </span>
+            <div class="action">
+              Rejestruje przekazanie sprzętu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Gear/history/my
+            </span>
+            <div class="action">
+              Pobiera historię własnych przekazań sprzętu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Gear/transfer-consumables
+            </span>
+            <div class="action">
+              Przekazuje materiały zużywalne.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            InsurancesViewController
+          </h2>
+          <p class="controller-description">
+            Zestawienia uczestników i danych ubezpieczeniowych.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /InsurancesView
+            </span>
+            <div class="action">
+              Pobiera warianty wyjazdów międzynarodowych.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /InsurancesView/{variantGuid}/participants
+            </span>
+            <div class="action">
+              Pobiera uczestników wybranego wariantu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /InsurancesView/update
+            </span>
+            <div class="action">
+              Aktualizuje dane ubezpieczenia uczestników.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            InvoiceDuplicateResolutionController
+          </h2>
+          <p class="controller-description">
+            Rozstrzyganie wykrytych duplikatów dokumentów.
+          </p>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /Invoices/{documentId}/duplicates/{candidateDocumentId}
+            </span>
+            <div class="action">
+              Usuwa wykryty duplikat dokumentu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Invoices/{documentId}/duplicates/{candidateDocumentId}/promote
+            </span>
+            <div class="action">
+              Zastępuje bieżący dokument jego duplikatem.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Invoices/{documentId}/duplicates/{candidateDocumentId}/keep-current
+            </span>
+            <div class="action">
+              Zachowuje bieżący dokument zamiast duplikatu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Invoices/{documentId}/duplicates/{candidateDocumentId}/dismiss
+            </span>
+            <div class="action">
+              Odrzuca zgłoszenie duplikatu.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            InvoicesController
+          </h2>
+          <p class="controller-description">
+            Rejestr faktur, pliki, płatności i synchronizacja dokumentów.
+          </p>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Invoices/sync
+            </span>
+            <div class="action">
+              Synchronizuje rejestr dokumentów.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Invoices
+            </span>
+            <div class="action">
+              Pobiera dokumenty z rejestru faktur.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Invoices/{id}
+            </span>
+            <div class="action">
+              Aktualizuje dane dokumentu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Invoices/{documentId}/transfers/{bankTransferId}
+            </span>
+            <div class="action">
+              Łączy dokument z przelewem.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /Invoices/{documentId}/transfers/{bankTransferId}
+            </span>
+            <div class="action">
+              Usuwa powiązanie dokumentu z przelewem.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Invoices/available-transfers
+            </span>
+            <div class="action">
+              Pobiera przelewy dostępne do powiązania z dokumentem.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Invoices/{id}
+            </span>
+            <div class="action">
+              Pobiera szczegóły dokumentu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb DELETE">
+              DELETE
+            </span>
+            <span class="route">
+              /Invoices/{id}
+            </span>
+            <div class="action">
+              Usuwa dokument z rejestru.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Invoices/{id}/replace-file
+            </span>
+            <div class="action">
+              Podmienia plik dokumentu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Invoices/{id}/replacement-files
+            </span>
+            <div class="action">
+              Pobiera pliki dostępne do podmiany dokumentu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Invoices/transfers
+            </span>
+            <div class="action">
+              Pobiera przelewy w rejestrze faktur.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Invoices/transfers/{bankTransferId}/invoice-requirement
+            </span>
+            <div class="action">
+              Oznacza, czy dla przelewu wymagany jest dokument.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Invoices/{id}/payment-confirmation
+            </span>
+            <div class="action">
+              Ręcznie potwierdza lub cofa potwierdzenie płatności dokumentu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Invoices/{id}/extract-data
+            </span>
+            <div class="action">
+              Odczytuje dane z dokumentu za pomocą OCR/AI.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Invoices/extract-data-for-month
+            </span>
+            <div class="action">
+              Odczytuje dane dokumentów dla wskazanego miesiąca.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Invoices/sync-progress
+            </span>
+            <div class="action">
+              Pobiera postęp synchronizacji dokumentów.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            MembershipController
+          </h2>
+          <p class="controller-description">
+            Ewidencja osób członkowskich.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Membership
+            </span>
+            <div class="action">
+              Pobiera osoby członkowskie za wskazany okres.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Membership/{guid}
+            </span>
+            <div class="action">
+              Pobiera dane osoby członkowskiej.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Membership/options
+            </span>
+            <div class="action">
+              Pobiera osoby członkowskie do wyboru przy przypisywaniu przelewu.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Membership
+            </span>
+            <div class="action">
+              Dodaje osobę członkowską.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PUT">
+              PUT
+            </span>
+            <span class="route">
+              /Membership/{guid}
+            </span>
+            <div class="action">
+              Aktualizuje dane osoby członkowskiej.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb PATCH">
+              PATCH
+            </span>
+            <span class="route">
+              /Membership/{guid}/resign
+            </span>
+            <div class="action">
+              Zapisuje datę wystąpienia osoby członkowskiej.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            ParticipantsViewController
+          </h2>
+          <p class="controller-description">
+            Zbiorcze widoki uczestników i wyjazdów.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /ParticipantsView
+            </span>
+            <div class="action">
+              Pobiera uczestników pogrupowanych na potrzeby widoku.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /ParticipantsView/trips
+            </span>
+            <div class="action">
+              Pobiera wyjazdy wraz z wariantami na potrzeby widoku.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            RegistrationsViewController
+          </h2>
+          <p class="controller-description">
+            Zbiorczy widok rezerwacji.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /RegistrationsView
+            </span>
+            <div class="action">
+              Pobiera zbiorczą listę rezerwacji.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            SubsidiesController
+          </h2>
+          <p class="controller-description">
+            Sprawdzenie rezerwacji i przyznanie dofinansowania.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Subsidies/registration/{code}
+            </span>
+            <div class="action">
+              Wyszukuje rezerwację po kodzie na potrzeby dofinansowania.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /Subsidies/grant
+            </span>
+            <div class="action">
+              Przyznaje dofinansowanie do wskazanej rezerwacji.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            TripBalanceController
+          </h2>
+          <p class="controller-description">
+            Bilans wskazanego wyjazdu.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /Finance/trip-balance
+            </span>
+            <div class="action">
+              Pobiera bilans wskazanego wyjazdu.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            TrustedPersonViewController
+          </h2>
+          <p class="controller-description">
+            Wyszukiwanie osób i ich udziału w wyjazdach.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /TrustedPersonView/suggestions
+            </span>
+            <div class="action">
+              Podpowiada osoby pasujące do wyszukiwanej frazy.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /TrustedPersonView/people
+            </span>
+            <div class="action">
+              Pobiera udział wskazanej osoby w wyjazdach z opcjonalnym zakresem dat.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            UFGRegisterController
+          </h2>
+          <p class="controller-description">
+            Zestawienia UFG oraz obsługa eksportów TFG.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /UFGRegister/summary
+            </span>
+            <div class="action">
+              Pobiera miesięczne zestawienie danych raportowanych do UFG.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /UFGRegister/month-grouped
+            </span>
+            <div class="action">
+              Pobiera miesięczne dane UFG pogrupowane do arkusza.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /UFGRegister/export
+            </span>
+            <div class="action">
+              Eksportuje dane UFG do XLSX.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /UFGRegister/tfg/dashboard
+            </span>
+            <div class="action">
+              Pobiera podsumowanie stanu raportowania danych do TFG.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /UFGRegister/tfg/preview
+            </span>
+            <div class="action">
+              Pobiera podgląd najbliższego eksportu TFG.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /UFGRegister/tfg/exports
+            </span>
+            <div class="action">
+              Tworzy eksport danych o umowach raportowanych do TFG.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /UFGRegister/tfg/exports
+            </span>
+            <div class="action">
+              Pobiera listę eksportów TFG.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /UFGRegister/tfg/exports/{exportId}
+            </span>
+            <div class="action">
+              Pobiera szczegóły wskazanego eksportu TFG.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /UFGRegister/tfg/exports/{exportId}/file
+            </span>
+            <div class="action">
+              Pobiera plik CSV z przygotowanym eksportem TFG.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /UFGRegister/tfg/exports/{exportId}/accept
+            </span>
+            <div class="action">
+              Oznacza eksport TFG jako przyjęty przez UFG.
+            </div>
+          </div>
+          <div class="row">
+            <span class="verb POST">
+              POST
+            </span>
+            <span class="route">
+              /UFGRegister/tfg/exports/{exportId}/reject
+            </span>
+            <div class="action">
+              Oznacza eksport TFG jako odrzucony przez UFG.
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>
+            ViewsController
+          </h2>
+          <p class="controller-description">
+            Lista widoków dostępnych dla użytkownika.
+          </p>
+          <div class="row">
+            <span class="verb GET">
+              GET
+            </span>
+            <span class="route">
+              /views
+            </span>
+            <div class="action">
+              Pobiera widoki dostępne dla bieżącego użytkownika.
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
